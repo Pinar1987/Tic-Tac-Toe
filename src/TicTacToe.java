@@ -1,21 +1,18 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class TicTacToe {
     private Board board;
     private Player playerX;
     private Player playerO;
     private Scanner scanner;
     private Player currentPlayer;
 
-    public Main() {
+    public TicTacToe() {
         this.board = new Board();
         this.scanner = new Scanner(System.in);
     }
 
-    /**
-     * Handles the initial setup: getting player names and creating Player objects.
-     */
+
     private void setupPlayers() {
         System.out.println("Welcome to Tic Tac Toe!");
 
@@ -86,9 +83,6 @@ public class Main {
         scanner.close();
     }
 
-    /**
-     * Executes a single game of Tic-Tac-Toe.
-     */
     private void playGame() {
         boolean gameFinished = false;
 
@@ -100,8 +94,7 @@ public class Main {
             // Place the move and check if successful
             boolean successfulMove = board.placeMove(move, currentPlayer.getSymbol());
 
-            // This loop should ideally not be needed if getPlayerMove ensures a valid empty spot.
-            // However, this structure is robust.
+            // Check if the cells taken //
             while (!successfulMove) {
                 System.out.println("That position is already taken or invalid. Try again.");
                 move = getPlayerMove();
@@ -130,10 +123,10 @@ public class Main {
         }
     }
 
-    /**
-     * Prompts the current player for a move (1-9) and handles input validation and error handling.
-     * @return The valid move position (1-9).
-     */
+
+     //input validation error handling
+     // @return The valid move position (1-9).
+     //
     private int getPlayerMove() {
         int move = -1;
         boolean isValid = false;
@@ -150,14 +143,12 @@ public class Main {
 
                     if (move >= 1 && move <= 9) {
                         // Check if the spot is actually empty (Board method handles this internally,
-                        // but a pre-check here can provide better feedback).
-                        // However, we rely on Board.placeMove for final check to keep logic clean.
                         isValid = true;
                     } else {
                         System.out.println("Invalid input. Please enter a number between 1 and 9.");
                     }
                 } else {
-                    // Handle non-integer input (InputMismatchException handled implicitly by nextLine check)
+                    // Handle non-integer input (check)
                     System.out.println("Invalid input. Please enter a number.");
                     scanner.nextLine(); // Consume the invalid input
                 }
