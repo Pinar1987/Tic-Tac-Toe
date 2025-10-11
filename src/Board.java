@@ -9,9 +9,6 @@ public class Board {
     // Size of the board (3x3)
     private static final int SIZE = 3;
 
-    /**
-     * Resets the board to an empty state.
-     */
     public void reset() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -20,9 +17,7 @@ public class Board {
         }
     }
 
-    /**
-     * Draws the current state of the board to the console.
-     */
+
     public void draw() {
         // Clear screen (optional and platform-dependent, but good for cleanliness)
         System.out.print("\033[H\033[2J");
@@ -57,15 +52,11 @@ public class Board {
 
 
     public boolean placeMove(int position, char symbol) {
-        // Map 1-9 to 2D array indices (row, col)
-        // position - 1 gives 0-8.
-        // row = (position - 1) / SIZE
-        // col = (position - 1) % SIZE
         int row = (position - 1) / SIZE;
         int col = (position - 1) % SIZE;
 
         if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
-            // Should not happen if input validation is done in TicTacToe class
+
             return false;
         }
 
@@ -73,14 +64,9 @@ public class Board {
             grid[row][col] = symbol;
             return true;
         }
-        return false; // Position is already taken
+        return false;
     }
 
-    /**
-     * Checks if the given player symbol has won.
-     * @param symbol The symbol ('X' or 'O') to check for a win.
-     * @return true if the symbol has three in a row, false otherwise.
-     */
     public boolean checkWin(char symbol) {
         // Check rows and columns
         for (int i = 0; i < SIZE; i++) {
@@ -94,7 +80,7 @@ public class Board {
             }
         }
 
-        // Check diagonals
+        // Check
         // Top-left to bottom-right
         if (grid[0][0] == symbol && grid[1][1] == symbol && grid[2][2] == symbol) {
             return true;
@@ -119,4 +105,12 @@ public class Board {
         }
         return true; // Board is full
     }
+
+    public boolean isPositionEmpty(int position) {
+        int row = (position - 1) / SIZE;
+        int col = (position - 1) % SIZE;
+
+        return grid[row][col] == ' ';
+    }
+
 }
