@@ -45,8 +45,7 @@ public class TicTacToe {
 
         System.out.printf("\n%s will be 'X' and %s will be 'O'. Let the game begin!\n", playerX.getName(), playerO.getName());
 
-        playerX = new Player(playerX.getName(), 'X');
-        playerO = (playerO instanceof ComputerPlayer) ? new ComputerPlayer('O') : new Player(playerO.getName(), 'O');
+
 
     }
 
@@ -54,10 +53,10 @@ public class TicTacToe {
     public void start() {
         boolean keepPlaying = true;
 
-        while (keepPlaying) {
-            setupPlayers();
-            currentPlayer = playerX;
+        setupPlayers();
 
+        while (keepPlaying) {
+            currentPlayer = playerX;
             playGame();
 
             System.out.println("\n--- Current Score ---");
